@@ -51,15 +51,27 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: release-apk
-          path: android/*.apk
+          path: /android/*.apk
 
       # Start notify telegram bot
-      - name: Notify Telegram
-        uses: yanzay/notify-telegram@v0.1.0
+      # - name: Notify Telegram
+#         uses: yanzay/notify-telegram@v0.1.0
+# 
+#         with:
+#           chat: -570666403 # Get chat id using terminal: curl https://api.telegram.org/bot{bot_token}/getUpdates
+#           token: 1949028212:AAHeVWhiHGjCuHVVl1Y_BnAYxVnnT2xSenc # Use Telegram @@BotFather
+#           status: ${{ job.status }} # do not modify this line
 
+      - name: telegram apk bot share
+        uses: appleboy/telegram-action@master
         with:
-          chat: -570666403 # Get chat id using terminal: curl https://api.telegram.org/bot{bot_token}/getUpdates
-          token: 1949028212:AAHeVWhiHGjCuHVVl1Y_BnAYxVnnT2xSenc # Use Telegram @@BotFather
-          status: ${{ job.status }} # do not modify this line
+          to: -570666403
+          token: 1949028212:AAHeVWhiHGjCuHVVl1Y_BnAYxVnnT2xSenc
+          message: release-apk
+          # photo: tests/github.png
+          document: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+          
+
+
           
       
