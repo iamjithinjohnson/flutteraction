@@ -48,7 +48,7 @@ jobs:
         run: flutter build apk --split-per-abi
        
       # Upload generated apk to the artifacts.
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2
         with:
           name: release-apk
           path: app-release.apk
@@ -56,7 +56,7 @@ jobs:
       # Start notify telegram bot
       - name: Notify Telegram
         uses: yanzay/notify-telegram@v0.1.0
-        
+
         with:
           chat: -570666403 # Get chat id using terminal: curl https://api.telegram.org/bot{bot_token}/getUpdates
           token: 1949028212:AAHeVWhiHGjCuHVVl1Y_BnAYxVnnT2xSenc # Use Telegram @@BotFather
